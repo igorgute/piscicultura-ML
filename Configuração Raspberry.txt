@@ -1,0 +1,14 @@
+# no Raspberry Pi:
+sudo apt update && sudo apt install -y python3-venv python3-pip
+python3 -m venv ~/beekeep-venv
+source ~/beekeep-venv/bin/activate
+pip install requests adafruit-circuitpython-ads1x15 w1thermsensor hx711py
+
+# copiar script
+# scp sensor.py pi@raspberrypi:/home/pi/beekeep/sensor.py (ajuste conforme)
+# copiar service
+sudo cp raspberry/beekeep-sensor.service /etc/systemd/system/beekeep-sensor.service
+sudo systemctl daemon-reload
+sudo systemctl enable beekeep-sensor
+sudo systemctl start beekeep-sensor
+sudo journalctl -u beekeep-sensor -f
