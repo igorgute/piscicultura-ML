@@ -27,20 +27,20 @@ Dashboard             Streamlit                     Visualização interativa de
 ESTRUTURA DO PROJETO
 ====================
 .
-├── data/                 # Datasets (raw & processed)
-├── src/
-│   ├── collection/       # Código para Raspberry Pi
-│   ├── etl/              # DAGs do Airflow
-│   ├── training/         # Scripts de treino (Scikit-learn e TensorFlow)
-│   ├── api/              # FastAPI para inferência
-│   └── monitoring/       # Configurações do Evidently
-├── models/               # Modelos salvos (registrados via MLflow)
-├── notebooks/            # Análises exploratórias e prototipagem
-├── scripts/
-│   ├── Com_TF/  # Pipeline completo com LSTM
-│   └── Sem_TF/      # Versão simplificada (Scikit-learn)
-├── dashboard/            # Aplicação Streamlit
-└── Makefile              # Automação de comandos frequentes
+├── data/                 # Datasets (raw & processed)  
+├── src/  
+│   ├── collection/       # Código para Raspberry Pi  
+│   ├── etl/              # DAGs do Airflow  
+│   ├── training/         # Scripts de treino (Scikit-learn e TensorFlow)  
+│   ├── api/              # FastAPI para inferência  
+│   └── monitoring/       # Configurações do Evidently  
+├── models/               # Modelos salvos (registrados via MLflow)  
+├── notebooks/            # Análises exploratórias e prototipagem  
+├── scripts/  
+│   ├── Com_TF/  # Pipeline completo com LSTM  
+│   └── Sem_TF/      # Versão simplificada (Scikit-learn)  
+├── dashboard/            # Aplicação Streamlit  
+└── Makefile              # Automação de comandos frequentes  
 
 GUIA DE INICIALIZAÇÃO RÁPIDA
 ============================
@@ -48,12 +48,11 @@ GUIA DE INICIALIZAÇÃO RÁPIDA
 1. PRÉ-REQUISITOS E CONFIGURAÇÃO
 ---------------------------------
 # Clone o repositório
-git clone https://github.com/seu-usuario/gestao-racao-aquicultura.git
+git clone [https://github.com/seu-usuario/gestao-racao-aquicultura.git](https://github.com/igorgute/piscicultura-ML)  
 cd gestao-racao-aquicultura
 
 # Execute o script de setup para configurar o ambiente
-chmod +x scripts/setup.sh
-./scripts/setup.sh
+chmod +x setup.sh
 
 NOTA PARA RASPBERRY PI: Consulte `raspberry_setup.md` na raiz do projeto para instruções específicas de configuração de hardware e sistema.
 
@@ -66,8 +65,7 @@ O sistema oferece duas implementações, balanceando complexidade e desempenho:
 
 3. EXECUÇÃO
 -----------
-# Execute os scripts na raiz
-setup
+# Execute o script na raiz
 run_all(0)
 
 # OU Navegue até a versão desejada e execute os scripts em ordem
@@ -94,7 +92,7 @@ Um `Makefile` principal está disponível na raiz para instalação de dependên
 # Na raiz do projeto (instala dependências gerais)
 make install_core
 
-# Dentro de uma pasta de script (ex: scikit_only/)
+# Dentro de uma pasta de script (ex: Sem_TF/)
 make help  # Lista todos os comandos disponíveis para aquela versão
 
 ROADMAP E PRÓXIMAS EVOLUÇÕES
