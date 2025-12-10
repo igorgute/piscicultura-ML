@@ -54,7 +54,7 @@ cd gestao-racao-aquicultura
 # Execute o script de setup para configurar o ambiente
 chmod +x setup.sh
 
-NOTA PARA RASPBERRY PI: Consulte `raspberry_setup.md` na raiz do projeto para instruções específicas de configuração de hardware e sistema.
+NOTA PARA RASPBERRY PI: Consulte `raspberry_setup.txt` na raiz do projeto para instruções específicas de configuração de hardware e sistema.
 
 2. ESCOLHA DO PIPELINE DE ML
 -----------------------------
