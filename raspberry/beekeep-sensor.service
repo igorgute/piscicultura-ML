@@ -1,0 +1,15 @@
+[Unit]
+Description=Beekeep sensor service
+After=network.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/beekeep
+Environment="PATH=/home/pi/beekeep-venv/bin"
+Environment="API_ENDPOINT=http://localhost:8000/predict"
+ExecStart=/home/pi/beekeep-venv/bin/python /home/pi/beekeep/sensor.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

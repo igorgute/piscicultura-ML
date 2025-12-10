@@ -1,0 +1,2 @@
+backend_store_uri: sqlite:///mlflow.db
+artifact_store_uri: ./artifacts

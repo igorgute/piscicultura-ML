@@ -1,0 +1,53 @@
+.PHONY: help setup data train serve test deploy clean
+
+help:
+	@echo "Comandos disponíveis:"
+	@echo "  make setup     - Configurar ambiente"
+	@echo "  make data      - Gerar dados sintéticos"
+	@echo "  make train     - Treinar modelo"
+	@echo "  make serve     - Iniciar todos os serviços"
+	@echo "  make test      - Rodar testes"
+	@echo "  make deploy    - Fazer deploy AWS"
+	@echo "  make package   - Criar pacote ZIP"
+	@echo "  make clean     - Limpar arquivos temporários"
+
+setup:
+	@echo "Configurando ambiente..."
+	chmod +x scripts/*.sh 2>/dev/null || true
+
+data:
+	python src/data/collect.py
+
+train: data
+	@echo "Iniciando MLflow..."
+	mlflow server --backend-store-uri sqlite:///mlflow.db \
+		--default-artifact-root ./artifacts \
+		--host 0.0.0.0 --port 5000 &
+	@sleep 2
+	export MLFLOW_TRACKING_URI=http://localhost:5000
+	python src/train.py
+
+serve:
+	@echo "Iniciando serviços..."
+	@./scripts/run_services.sh
+
+test:
+	pytest -v
+	flake8 src
+
+deploy:
+	@echo "Deploy AWS..."
+	@./scripts/deploy_aws.sh
+
+package:
+	@echo "Empacotando..."
+	@./scripts/package.sh
+
+clean:
+	rm -rf __pycache__
+	rm -rf .pytest_cache
+	rm -rf .venv
+	rm -rf *.log
+	rm -rf mlflow.db
+	rm -rf artifacts/*
+	find . -name "*.pyc" -delete
